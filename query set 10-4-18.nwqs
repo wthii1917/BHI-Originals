@@ -1,0 +1,2049 @@
+<QuerySet>
+  <Query IsView="False" IsSP="False">
+    <SQL>DROP TABLE IF EXISTS	whaight.bluh;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_admit_source;
+CREATE TABLE			clean_raw.BHI_reference_admit_source
+(		code			VARCHAR(  2 )	ENCODE	RAW
+	,	description		VARCHAR( 50 )	ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_admit_source	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_admit_source
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_admit_source.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_admit_source;
+ANALYZE					clean_raw.BHI_reference_admit_source;
+VACUUM SORT ONLY		clean_raw.BHI_reference_admit_source;
+ANALYZE					clean_raw.BHI_reference_admit_source;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_admit_source;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_admit_type;
+CREATE TABLE			clean_raw.BHI_reference_admit_type
+(		code			VARCHAR(  2 )	ENCODE	RAW
+	,	description		VARCHAR( 26 )	ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_admit_type	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_admit_type
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_admit_type.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_admit_type;
+ANALYZE					clean_raw.BHI_reference_admit_type;
+VACUUM SORT ONLY		clean_raw.BHI_reference_admit_type;
+ANALYZE					clean_raw.BHI_reference_admit_type;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_admit_type;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHIbhi_dev._benefit_payment_status;
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_benefit_payment_status;
+CREATE TABLE			clean_raw.BHI_reference_benefit_payment_status
+(		code			VARCHAR(  1 )	--ENCODE	RAW
+	,	description		VARCHAR( 18 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_benefit_payment_status	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_benefit_payment_status
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_benefit_payment_status.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_benefit_payment_status;
+ANALYZE					clean_raw.BHI_reference_benefit_payment_status;
+VACUUM SORT ONLY		clean_raw.BHI_reference_benefit_payment_status;
+ANALYZE					clean_raw.BHI_reference_benefit_payment_status;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_benefit_payment_status;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_claim_type;
+CREATE TABLE			clean_raw.BHI_reference_claim_type
+(		code			VARCHAR(  2 )	--ENCODE	RAW
+	,	description		VARCHAR( 20 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_claim_type	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_claim_type
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_claim_type.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_claim_type;
+ANALYZE					clean_raw.BHI_reference_claim_type;
+VACUUM SORT ONLY		clean_raw.BHI_reference_claim_type;
+ANALYZE					clean_raw.BHI_reference_claim_type;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_claim_type;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_discharge_status;
+CREATE TABLE			clean_raw.BHI_reference_discharge_status
+(		code			VARCHAR(  2 )	--ENCODE	RAW
+	,	description		VARCHAR( 80 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_discharge_status	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_discharge_status
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_discharge_status.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_discharge_status;
+ANALYZE					clean_raw.BHI_reference_discharge_status;
+VACUUM SORT ONLY		clean_raw.BHI_reference_discharge_status;
+ANALYZE					clean_raw.BHI_reference_discharge_status;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_discharge_status;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_dispensing_status;
+CREATE TABLE			clean_raw.BHI_reference_dispensing_status
+(		code			VARCHAR(  2 )	--ENCODE	RAW
+	,	description		VARCHAR( 26 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_dispensing_status	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_dispensing_status
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_dispensing_status.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_dispensing_status;
+ANALYZE					clean_raw.BHI_reference_dispensing_status;
+VACUUM SORT ONLY		clean_raw.BHI_reference_dispensing_status;
+ANALYZE					clean_raw.BHI_reference_dispensing_status;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_dispensing_status;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_noncovered_reason;
+CREATE TABLE			clean_raw.BHI_reference_noncovered_reason
+(		code			VARCHAR(  2 )	--ENCODE	RAW
+	,	description		VARCHAR( 48 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_noncovered_reason	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_noncovered_reason
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_noncovered_reason.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_noncovered_reason;
+ANALYZE					clean_raw.BHI_reference_noncovered_reason;
+VACUUM SORT ONLY		clean_raw.BHI_reference_noncovered_reason;
+ANALYZE					clean_raw.BHI_reference_noncovered_reason;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_noncovered_reason;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_place_of_service;
+CREATE TABLE			clean_raw.BHI_reference_place_of_service
+(		code			VARCHAR(  2 )	--ENCODE	RAW
+	,	description		VARCHAR( 70 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_place_of_service	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_place_of_service
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_place_of_service.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_place_of_service;
+ANALYZE					clean_raw.BHI_reference_place_of_service;
+VACUUM SORT ONLY		clean_raw.BHI_reference_place_of_service;
+ANALYZE					clean_raw.BHI_reference_place_of_service;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_place_of_service;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_product;
+CREATE TABLE			clean_raw.BHI_reference_product
+(		code			VARCHAR(  4 )	--ENCODE	RAW
+	,	description		VARCHAR( 32 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_product	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_product
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_product.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_product;
+ANALYZE					clean_raw.BHI_reference_product;
+VACUUM SORT ONLY		clean_raw.BHI_reference_product;
+ANALYZE					clean_raw.BHI_reference_product;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_product;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_provider_specialty;
+CREATE TABLE			clean_raw.BHI_reference_provider_specialty
+(		code			VARCHAR(  2 )	--ENCODE	RAW
+	,	description		VARCHAR( 45 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_provider_specialty	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_provider_specialty
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_provider_specialty.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_provider_specialty;
+ANALYZE					clean_raw.BHI_reference_provider_specialty;
+VACUUM SORT ONLY		clean_raw.BHI_reference_provider_specialty;
+ANALYZE					clean_raw.BHI_reference_provider_specialty;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_provider_specialty;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_provider_type;
+CREATE TABLE			clean_raw.BHI_reference_provider_type
+(		code			VARCHAR(  2 )	--ENCODE	RAW
+	,	description		VARCHAR( 30 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_provider_type	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_provider_type
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_provider_type.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_provider_type;
+ANALYZE					clean_raw.BHI_reference_provider_type;
+VACUUM SORT ONLY		clean_raw.BHI_reference_provider_type;
+ANALYZE					clean_raw.BHI_reference_provider_type;
+
+
+
+select	*	from		stl_load_errors	order by		starttime	desc;
+
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_provider_type;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_reimbursement_type;
+CREATE TABLE			clean_raw.BHI_reference_reimbursement_type
+(		code			VARCHAR(  5 )	--ENCODE	RAW
+	,	description		VARCHAR( 35 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_reimbursement_type	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_reimbursement_type
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_reimbursement_type.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_reimbursement_type;
+ANALYZE					clean_raw.BHI_reference_reimbursement_type;
+VACUUM SORT ONLY		clean_raw.BHI_reference_reimbursement_type;
+ANALYZE					clean_raw.BHI_reference_reimbursement_type;
+
+
+
+select	*	from	stl_load_errors	order by		starttime	desc;
+
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_reimbursement_type;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_type_of_bill;
+CREATE TABLE			clean_raw.BHI_reference_type_of_bill
+(		code			VARCHAR(  3 )	--ENCODE	RAW
+	,	description		VARCHAR( 50 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_type_of_bill	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_type_of_bill
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_type_of_bill.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_type_of_bill;
+ANALYZE					clean_raw.BHI_reference_type_of_bill;
+VACUUM SORT ONLY		clean_raw.BHI_reference_type_of_bill;
+ANALYZE					clean_raw.BHI_reference_type_of_bill;
+
+
+
+select	*	from	stl_load_errors	order by	starttime	desc;
+
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_type_of_bill;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_reference_type_of_service;
+CREATE TABLE			clean_raw.BHI_reference_type_of_service
+(		code			VARCHAR(  5 )	--ENCODE	RAW
+	,	description		VARCHAR( 35 )	--ENCODE	RAW
+)	/*	create			clean_raw.BHI_reference_type_of_service	*/
+COMPOUND SORTKEY( code );
+
+
+
+COPY		clean_raw.BHI_reference_type_of_service
+FROM		's3://dhp-rndlab-bhi-data/unzipped/reference_type_of_service.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_reference_type_of_service;
+ANALYZE					clean_raw.BHI_reference_type_of_service;
+VACUUM SORT ONLY		clean_raw.BHI_reference_type_of_service;
+ANALYZE					clean_raw.BHI_reference_type_of_service;
+
+
+
+select	*	from	stl_load_errors	order by	starttime	desc;
+
+
+
+SELECT		MAX( LEN( code ) )			AS	MaxCodeLen
+		,	MAX( LEN( description ) )	AS	MaxDescLen
+FROM	clean_raw.BHI_reference_type_of_service;
+
+
+
+</SQL>
+    <Name>Tab 2</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>DROP TABLE IF EXISTS	clean_raw.BHI_cpt_codes;
+CREATE TABLE			clean_raw.BHI_cpt_codes
+(		HCPCS_CPT_Code		VARCHAR( 14 )	ENCODE	RAW
+	,	Short_Description	VARCHAR( 28 )	ENCODE	RAW
+	,	Year				VARCHAR(  4 )	ENCODE	RAW
+)	/*	create			clean_raw.BHI_cpt_codes	*/
+COMPOUND SORTKEY( HCPCS_CPT_Code );
+
+
+
+COPY		clean_raw.BHI_cpt_codes
+FROM		's3://dhp-randlab-s3/users/mpazen/codesets/CPT.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers' COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_cpt_codes;
+ANALYZE					clean_raw.BHI_cpt_codes;
+VACUUM SORT ONLY		clean_raw.BHI_cpt_codes;
+ANALYZE					clean_raw.BHI_cpt_codes;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ICD9_codes;
+CREATE TABLE			clean_raw.BHI_ICD9_codes
+(		dx_code			VARCHAR(  5 )	ENCODE	ZSTD
+	,	First			DATE			ENCODE	ZSTD
+	,	Last			DATE			ENCODE	ZSTD
+	,	dx_short_desc	VARCHAR(  24 )	ENCODE	ZSTD
+	,	version			VARCHAR(   1 )	ENCODE	ZSTD
+	,	dx_long_desc	VARCHAR( 222 )	ENCODE	ZSTD
+	,	CLASS			VARCHAR(  69 )	ENCODE	ZSTD
+	,	SubCLASS		VARCHAR( 156 )	ENCODE	ZSTD
+	,	SUBSubCLASS		VARCHAR( 156 )	ENCODE	RAW
+)	/*	create			clean_raw.BHI_ICD9_codes	*/
+COMPOUND SORTKEY( dx_code );
+
+
+/*
+select	max( len( dx_code ) )		AS	MAX_dx_code
+	,	max( len( dx_short_desc ) )	AS	MAX_dx_short_desc
+	,	max( len( version ) )		AS	MAX_version
+	,	max( len( dx_long_desc ) )	AS	MAX_dx_long_desc
+	,	max( len( CLASS ) )			AS	MAX_CLASS
+	,	max( len( SubCLASS ) )		AS	MAX_SubCLASS
+	,	max( len( SUBSubCLASS ) )	AS	MAX_SUBSubCLASS
+from	clean_raw.BHI_ICD9_codes;
+*/
+
+
+COPY		clean_raw.BHI_ICD9_codes
+FROM		's3://dhp-randlab-s3/users/mpazen/codesets/ICD9.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_ICD9_codes;
+ANALYZE					clean_raw.BHI_ICD9_codes;
+VACUUM SORT ONLY		clean_raw.BHI_ICD9_codes;
+ANALYZE					clean_raw.BHI_ICD9_codes;
+
+
+
+SELECT		*
+FROM			stl_load_errors
+ORDER BY		starttime	DESC;
+
+
+
+select	max( len( Code ) )			AS	MAX_Code
+	,	max( len( dx_short_desc ) )	AS	MAX_dx_short_desc
+	,	max( len( Version ) )		AS	MAX_Version
+	,	max( len( dx_long_desc ) )	AS	MAX_dx_long_desc
+from	clean_raw.BHI_ICD10_codes;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ICD10_codes;
+CREATE TABLE			clean_raw.BHI_ICD10_codes
+(		Code			VARCHAR(   7 )	ENCODE	ZSTD
+	,	First			DATE			ENCODE	ZSTD
+	,	Last			DATE			ENCODE	RAW
+	,	dx_short_desc	VARCHAR(  60 )	ENCODE	ZSTD
+	,	Version			VARCHAR(   1 )	ENCODE	ZSTD
+	,	dx_long_desc	VARCHAR( 228 )	ENCODE	ZSTD
+)	/*	create			clean_raw.BHI_ICD10_codes	*/
+COMPOUND SORTKEY( Code );
+
+
+
+COPY		clean_raw.BHI_ICD10_codes
+FROM		's3://dhp-randlab-s3/users/mpazen/codesets/icd10.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_ICD10_codes;
+ANALYZE					clean_raw.BHI_ICD10_codes;
+VACUUM SORT ONLY		clean_raw.BHI_ICD10_codes;
+ANALYZE					clean_raw.BHI_ICD10_codes;
+
+
+
+select	max( len( PRODUCTID ) )							AS	MAX_prod_id
+	,	max( len( PRODUCTNDC ) )							AS	MAX_prod_ndc
+	,	max( len( NDC_EXCLUDE_FLAG ) )					AS	MAX_excl_flag
+	,	max( len( NDCPACKAGECODE ) )						AS	MAX_pkg_code
+	,	max( len( PACKAGEDESCRIPTION ) )					AS	MAX_pkg_desc
+	,	max( len( SAMPLE_PACKAGE ) )						AS	MAX_samp_pkg
+	,	max( len( PRODUCTTYPENAME ) )					AS	MAX_prod_type
+	,	max( len( PROPRIETARYNAME ) )					AS	MAX_prop_nm
+	,	max( len( PROPRIETARYNAMESUFFIX ) )				AS	MAX_prop_nm_suff
+	,	max( len( NONPROPRIETARYNAME ) )					AS	MAX_non_prop_name
+	,	max( len( DOSAGEFORMNAME ) )						AS	MAX_dsg_form_name
+	,	max( len( ROUTENAME ) )							AS	MAX_rt_name
+	,	max( len( MARKETINGCATEGORYNAME ) )				AS	MAX_mktg_cat_name
+	,	max( len( APPLICATIONNUMBER ) )					AS	MAX_appl_num
+	,	max( len( LABELERNAME ) )						AS	MAX_labeler_name
+	,	max( len( SUBSTANCENAME ) )						AS	MAX_subst_name
+	,	max( len( ACTIVE_NUMERATOR_STRENGTH ) )			AS	MAX_act_num_stren
+	,	max( len( ACTIVE_INGRED_UNIT ) )					AS	MAX_act_ingr_unit
+	,	max( len( PHARM_CLASSES ) )						AS	MAX_pharm_class
+	,	max( len( DEASCHEDULE ) )						AS	MAX_dea_sched
+	,	max( len( LISTING_RECORD_CERTIFIED_THROUGH ) )	AS	MAX_list_rec_cert
+from	clean_raw.BHI_ndc_codes;
+
+
+
+DROP TABLE IF EXISTS		clean_raw.BHI_ndc_codes;
+CREATE TABLE				clean_raw.BHI_ndc_codes
+(		PRODUCTID							VARCHAR(  47 )	ENCODE	ZSTD
+	,	PRODUCTNDC							VARCHAR(  10 )	ENCODE	ZSTD
+	,	STARTMARKETINGDATE					DATE			ENCODE	ZSTD
+	,	ENDMARKETINGDATE					DATE			ENCODE	RAW
+	,	NDC_EXCLUDE_FLAG					VARCHAR(   1 )	ENCODE	ZSTD
+	,	NDCPACKAGECODE						VARCHAR(  12 )	ENCODE	ZSTD
+	,	PACKAGEDESCRIPTION					VARCHAR( 256 )	ENCODE	ZSTD
+	,	SAMPLE_PACKAGE						VARCHAR(   1 )	ENCODE	ZSTD
+	,	PRODUCTTYPENAME						VARCHAR(  27 )	ENCODE	ZSTD
+	,	PROPRIETARYNAME						VARCHAR( 226 )	ENCODE	ZSTD
+	,	PROPRIETARYNAMESUFFIX				VARCHAR( 126 )	ENCODE	ZSTD
+	,	NONPROPRIETARYNAME					VARCHAR( 256 )	ENCODE	ZSTD
+	,	DOSAGEFORMNAME						VARCHAR(  46 )	ENCODE	ZSTD
+	,	ROUTENAME							VARCHAR( 143 )	ENCODE	ZSTD
+	,	MARKETINGCATEGORYNAME				VARCHAR(  40 )	ENCODE	ZSTD
+	,	APPLICATIONNUMBER					VARCHAR(  15 )	ENCODE	ZSTD
+	,	LABELERNAME							VARCHAR( 121 )	ENCODE	ZSTD
+	,	SUBSTANCENAME						VARCHAR( 256 )	ENCODE	ZSTD
+	,	ACTIVE_NUMERATOR_STRENGTH			VARCHAR( 256 )	ENCODE	ZSTD
+	,	ACTIVE_INGRED_UNIT					VARCHAR( 256 )	ENCODE	ZSTD
+	,	PHARM_CLASSES						VARCHAR( 256 )	ENCODE	ZSTD
+	,	DEASCHEDULE							VARCHAR(   4 )	ENCODE	RAW
+	,	LISTING_RECORD_CERTIFIED_THROUGH	VARCHAR(  27 )	ENCODE	ZSTD
+)	/*	create			clean_raw.BHI_ndc_codes	*/
+COMPOUND SORTKEY( NDCPACKAGECODE );
+
+
+
+COPY		clean_raw.BHI_ndc_codes
+FROM		's3://dhp-randlab-s3/users/mpazen/codesets/NDC_Pipe.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0  COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_ndc_codes;
+ANALYZE					clean_raw.BHI_ndc_codes;
+VACUUM SORT ONLY		clean_raw.BHI_ndc_codes;
+ANALYZE					clean_raw.BHI_ndc_codes;
+
+</SQL>
+    <Name>Tab 1</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>DROP TABLE IF EXISTS	whaight.package;
+CREATE TABLE			whaight.package						/*	package	product	*/
+(		product_ID			VARCHAR(  47 )	ENCODE	ZSTD	--	*		*
+	,	product_NDC			VARCHAR(  10 )	ENCODE	ZSTD	--	*		*
+	,	NDC_package_Code	VARCHAR(  12 )	ENCODE	ZSTD	--	*
+	,	package_Desc		VARCHAR( 779 )	ENCODE	ZSTD	--	*
+	,	start_mktg_Date		DATE			ENCODE	ZSTD	--	*		*
+	,	end_mktg_Date		DATE			ENCODE	RAW		--	*		*
+	,	NDC_exclude_Flag	VARCHAR(   1 )	ENCODE	ZSTD	--	*		*
+	,	sample_Package		VARCHAR(   1 )	ENCODE	ZSTD	--	*
+);	/*	create			whaight.package		*/
+
+
+
+COPY		whaight.package
+FROM		's3://dhp-randlab-s3/users/whaight/package.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '\t' STATUPDATE ON MAXERROR 2  COMPUPDATE ON;
+
+
+
+SELECT		MAX( LEN( product_ID ) )		AS	product_ID
+		,	MAX( LEN( product_NDC ) )		AS	product_NDC
+		,	MAX( LEN( NDC_package_Code ) )	AS	NDC_package_Code
+		,	MAX( LEN( package_Desc ) )		AS	package_Desc
+		,	MAX( LEN( NDC_exclude_Flag ) )	AS	NDC_exclude_Flag
+		,	MAX( LEN( sample_Package ) )	AS	sample_Package
+FROM	whaight.package;
+
+
+
+DROP TABLE IF EXISTS	whaight.product;
+CREATE TABLE			whaight.product								/*	package	product	*/
+(		product_ID					VARCHAR(   47 )	ENCODE	ZSTD	--	*		*
+	,	product_NDC					VARCHAR(   10 )	ENCODE	ZSTD	--	*		*
+	,	product_Type_Name			VARCHAR(   27 )	ENCODE	ZSTD	--			*
+	,	proprietary_Name			VARCHAR(  226 )	ENCODE	ZSTD	--			*
+	,	proprietary_Name_Suff		VARCHAR(  127 )	ENCODE	ZSTD	--			*
+	,	non_Proprietary_Name		VARCHAR(  514 )	ENCODE	ZSTD	--			*
+	,	dosage_Form_Name			VARCHAR(   48 )	ENCODE	ZSTD	--			*
+	,	route_Name					VARCHAR(  143 )	ENCODE	ZSTD	--			*
+	,	start_mktg_Date				DATE			ENCODE	ZSTD	--	*		*
+	,	end_mktg_Date				DATE			ENCODE	RAW		--	*		*
+	,	marktg_Category_Name		VARCHAR(   40 )	ENCODE	ZSTD	--			*
+	,	application_Number			VARCHAR(   17 )	ENCODE	ZSTD	--			*
+	,	labeler_Name				VARCHAR(  121 )	ENCODE	ZSTD	--			*
+	,	substance_Name				VARCHAR( 3816 )	ENCODE	ZSTD	--			*
+	,	active_Numerator_Strength	VARCHAR(  742 )	ENCODE	ZSTD	--			*
+	,	active_Ingred_Unit			VARCHAR( 2055 )	ENCODE	ZSTD	--			*
+	,	pharm_Classes				VARCHAR( 4000 )	ENCODE	ZSTD	--			*
+	,	DEA_Schedule				VARCHAR(    4 )	ENCODE	ZSTD	--			*
+	,	NDC_exclude_Flag			VARCHAR(    1 )	ENCODE	ZSTD	--	*		*
+	,	listing_Rec_Cert_Through	VARCHAR(    8 )	ENCODE	ZSTD	--			*
+);	/*	create			whaight.product		*/
+
+
+
+COPY		whaight.product
+FROM		's3://dhp-randlab-s3/users/whaight/product.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '\t' STATUPDATE ON MAXERROR 0  COMPUPDATE ON;
+
+
+
+SELECT		MAX( LEN( product_ID ) )					AS	product_ID
+		,	MAX( LEN( product_NDC ) )					AS	product_NDC
+		,	MAX( LEN( product_Type_Name ) )				AS	product_Type_Name
+		,	MAX( LEN( proprietary_Name ) )				AS	proprietary_Name
+		,	MAX( LEN( proprietary_Name_Suff ) )			AS	proprietary_Name_Suff
+		,	MAX( LEN( non_Proprietary_Name ) )			AS	non_Proprietary_Name
+		,	MAX( LEN( dosage_Form_Name ) )				AS	dosage_Form_Name
+		,	MAX( LEN( route_Name ) )					AS	route_Name
+		,	MAX( LEN( marktg_Category_Name ) )			AS	marktg_Category_Name
+		,	MAX( LEN( application_Number ) )			AS	application_Number
+		,	MAX( LEN( labeler_Name ) )					AS	labeler_Name
+		,	MAX( LEN( substance_Name ) )				AS	substance_Name
+		,	MAX( LEN( active_Numerator_Strength ) )		AS	active_Numerator_Strength
+		,	MAX( LEN( active_Ingred_Unit ) )			AS	active_Ingred_Unit
+		,	MAX( LEN( pharm_Classes ) )					AS	pharm_Classes
+		,	MAX( LEN( DEA_Schedule ) )					AS	DEA_Schedule
+		,	MAX( LEN( NDC_exclude_Flag ) )				AS	NDC_exclude_Flag
+		,	MAX( LEN( listing_Rec_Cert_Through ) )		AS	listing_Rec_Cert_Through
+FROM	whaight.product;
+
+
+
+select	count(*)
+from	(	select distinct	*
+			from			whaight.package
+		)
+;
+
+
+select	count(*)
+from	whaight.package
+;
+
+
+select	count(*)
+from	(	select distinct	*
+			from			whaight.product
+		)
+;
+
+
+select	count(*)
+from	whaight.product
+;
+
+
+select	count(*)
+from	(	select distinct	*
+			from			clean_raw.BHI_ndc_codes
+		)
+;
+
+
+select	count(*)
+from	clean_raw.BHI_ndc_codes
+;
+
+
+SELECT	*
+FROM	whaight.package
+WHERE	product_ID	NOT IN	(	SELECT	product_ID
+								FROM	whaight.product
+							)
+;
+
+
+SELECT		count(*)
+FROM		whaight.product
+LEFT JOIN		whaight.package
+ON				( package.product_ndc		= product.product_NDC		)
+--			AND	( package.product_ID		= product.product_ID		)
+--			AND	( package.start_mktg_Date	= product.start_mktg_Date	)
+--			AND	( package.end_mktg_Date		= product.end_mktg_Date		)
+--GROUP BY	package.product_ndc
+--ORDER BY	package.product_ndc
+--LIMIT		10000
+;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ndc_codes_package;
+CREATE TABLE			clean_raw.BHI_ndc_codes_package		/*	package	product	*/
+(		product_ID			VARCHAR(  47 )	ENCODE	ZSTD		--	*		*
+	,	product_NDC			VARCHAR(  10 )	ENCODE	ZSTD		--	*		*
+	,	NDC_package_Code	VARCHAR(  12 )	ENCODE	ZSTD		--	*
+	,	package_Desc		VARCHAR( 779 )	ENCODE	ZSTD		--	*
+	,	start_mktg_Date		DATE			ENCODE	ZSTD		--	*		*
+	,	end_mktg_Date		DATE			ENCODE	RAW			--	*		*
+	,	NDC_exclude_Flag	VARCHAR(   1 )	ENCODE	ZSTD		--	*		*
+	,	sample_Package		VARCHAR(   1 )	ENCODE	ZSTD		--	*
+)
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( product_NDC, NDC_package_Code );
+;	/*	create			clean_raw.BHI_ndc_codes_package		*/
+
+
+
+COPY		clean_raw.BHI_ndc_codes_package
+FROM		's3://dhp-randlab-s3/users/whaight/package.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '\t' STATUPDATE ON MAXERROR 2  COMPUPDATE ON;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ndc_codes_product;
+CREATE TABLE			clean_raw.BHI_ndc_codes_product				/*	package	product	*/
+(		product_ID					VARCHAR(   47 )	ENCODE	ZSTD	--	*		*
+	,	product_NDC					VARCHAR(   10 )	ENCODE	ZSTD	--	*		*
+	,	product_Type_Name			VARCHAR(   27 )	ENCODE	ZSTD	--			*
+	,	proprietary_Name			VARCHAR(  226 )	ENCODE	ZSTD	--			*
+	,	proprietary_Name_Suff		VARCHAR(  127 )	ENCODE	ZSTD	--			*
+	,	non_Proprietary_Name		VARCHAR(  514 )	ENCODE	ZSTD	--			*
+	,	dosage_Form_Name			VARCHAR(   48 )	ENCODE	ZSTD	--			*
+	,	route_Name					VARCHAR(  143 )	ENCODE	ZSTD	--			*
+	,	start_mktg_Date				DATE			ENCODE	ZSTD	--	*		*
+	,	end_mktg_Date				DATE			ENCODE	RAW		--	*		*
+	,	marktg_Category_Name		VARCHAR(   40 )	ENCODE	ZSTD	--			*
+	,	application_Number			VARCHAR(   17 )	ENCODE	ZSTD	--			*
+	,	labeler_Name				VARCHAR(  121 )	ENCODE	ZSTD	--			*
+	,	substance_Name				VARCHAR( 3816 )	ENCODE	ZSTD	--			*
+	,	active_Numerator_Strength	VARCHAR(  742 )	ENCODE	ZSTD	--			*
+	,	active_Ingred_Unit			VARCHAR( 2055 )	ENCODE	ZSTD	--			*
+	,	pharm_Classes				VARCHAR( 4000 )	ENCODE	ZSTD	--			*
+	,	DEA_Schedule				VARCHAR(    4 )	ENCODE	ZSTD	--			*
+	,	NDC_exclude_Flag			VARCHAR(    1 )	ENCODE	ZSTD	--	*		*
+	,	listing_Rec_Cert_Through	VARCHAR(    8 )	ENCODE	ZSTD	--			*
+)
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( product_NDC );
+;	/*	create			clean_raw.BHI_ndc_codes_product	*/
+
+
+
+COPY		clean_raw.BHI_ndc_codes_product
+FROM		's3://dhp-randlab-s3/users/whaight/product.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '\t' STATUPDATE ON MAXERROR 0  COMPUPDATE ON;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ndc_codes;
+CREATE TABLE			clean_raw.BHI_ndc_codes							/*	package	product	*/
+(		product_ID						VARCHAR(   47 )	ENCODE	ZSTD	--	*		*
+	,	product_NDC						VARCHAR(   10 )	ENCODE	ZSTD	--	*		*
+	,	NDC_package_Code				VARCHAR(   12 )	ENCODE	ZSTD	--	*
+	,	package_Desc					VARCHAR(  779 )	ENCODE	ZSTD	--	*
+	,	package_Desc_alphanu			VARCHAR(  779 )	ENCODE	ZSTD
+	,	prod_start_mktg_Date			DATE			ENCODE	ZSTD	--			*
+	,	prod_end_mktg_Date				DATE			ENCODE	RAW		--			*
+	,	pkg_start_mktg_Date				DATE			ENCODE	ZSTD	--	*
+	,	pkg_end_mktg_Date				DATE			ENCODE	RAW		--	*
+	,	NDC_exclude_Flag				VARCHAR(    1 )	ENCODE	ZSTD	--	*		*
+	,	sample_Package					VARCHAR(    1 )	ENCODE	ZSTD	--	*
+	,	product_Type_Name				VARCHAR(   27 )	ENCODE	ZSTD	--			*
+	,	proprietary_Name				VARCHAR(  226 )	ENCODE	ZSTD	--			*
+	,	proprietary_Name_Suff			VARCHAR(  127 )	ENCODE	ZSTD	--			*
+	,	non_Proprietary_Name			VARCHAR(  514 )	ENCODE	ZSTD	--			*
+	,	non_Proprietary_Name_alphanu	VARCHAR(  514 )	ENCODE	ZSTD
+	,	dosage_Form_Name				VARCHAR(   48 )	ENCODE	ZSTD	--			*
+	,	route_Name						VARCHAR(  143 )	ENCODE	ZSTD	--			*
+	,	marktg_Category_Name			VARCHAR(   40 )	ENCODE	ZSTD	--			*
+	,	application_Number				VARCHAR(   17 )	ENCODE	ZSTD	--			*
+	,	labeler_Name					VARCHAR(  121 )	ENCODE	ZSTD	--			*
+	,	substance_Name					VARCHAR( 3816 )	ENCODE	ZSTD	--			*
+	,	substance_Name_alphanu			VARCHAR( 3816 )	ENCODE	ZSTD
+	,	active_Numerator_Strength		VARCHAR(  742 )	ENCODE	ZSTD	--			*
+	,	active_Ingred_Unit				VARCHAR( 2055 )	ENCODE	ZSTD	--			*
+	,	active_Ingred_Unit_alphanu		VARCHAR( 2055 )	ENCODE	ZSTD
+	,	pharm_Classes					VARCHAR( 4000 )	ENCODE	ZSTD	--			*
+	,	pharm_Classes_alphanu			VARCHAR( 4000 )	ENCODE	ZSTD
+	,	DEA_Schedule					VARCHAR(    4 )	ENCODE	ZSTD	--			*
+	,	listing_Rec_Cert_Through		VARCHAR(    8 )	ENCODE	ZSTD	--			*
+)
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( product_NDC, NDC_package_Code );
+;	/*	create			clean_raw.BHI_ndc_codes		*/
+
+
+
+INSERT INTO			clean_raw.BHI_ndc_codes
+(	SELECT DISTINCT
+			( BHI_ndc_codes_product.product_ID )				::	VARCHAR(   47 )	AS	product_ID
+		,	( BHI_ndc_codes_product.product_NDC )				::	VARCHAR(   10 )	AS	product_NDC
+		,	( BHI_ndc_codes_package.NDC_package_Code )			::	VARCHAR(   12 )	AS	NDC_package_Code
+		,	( BHI_ndc_codes_package.package_Desc )				::	VARCHAR(  779 )	AS	package_Desc
+		,	( REGEXP_REPLACE( BHI_ndc_codes_package.package_Desc, '[^a-zA-Z0-9]+', ' ' ) )
+																::	VARCHAR(  779 )	AS	package_Desc_alphanu
+		,	( BHI_ndc_codes_product.start_mktg_Date )			::	DATE			AS	prod_start_mktg_Date
+		,	( BHI_ndc_codes_product.end_mktg_Date )				::	DATE			AS	prod_end_mktg_Date
+		,	( BHI_ndc_codes_package.start_mktg_Date )			::	DATE			AS	pkg_start_mktg_Date
+		,	( BHI_ndc_codes_package.end_mktg_Date )				::	DATE			AS	pkg_end_mktg_Date
+		,	( BHI_ndc_codes_product.NDC_exclude_Flag )			::	VARCHAR(    1 )	AS	NDC_exclude_Flag
+		,	( BHI_ndc_codes_package.sample_Package )			::	VARCHAR(    1 )	AS	sample_Package
+		,	( BHI_ndc_codes_product.product_Type_Name )			::	VARCHAR(   27 )	AS	product_Type_Name
+		,	( BHI_ndc_codes_product.proprietary_Name )			::	VARCHAR(  226 )	AS	proprietary_Name
+		,	( BHI_ndc_codes_product.proprietary_Name_Suff )		::	VARCHAR(  127 )	AS	proprietary_Name_Suff
+		,	( BHI_ndc_codes_product.non_Proprietary_Name )		::	VARCHAR(  514 )	AS	non_Proprietary_Name
+		,	( REGEXP_REPLACE( BHI_ndc_codes_product.non_Proprietary_Name, '[^a-zA-Z0-9]+', ' ' ) )
+																::	VARCHAR(  514 )	AS	non_Proprietary_Name_alphanu
+		,	( BHI_ndc_codes_product.dosage_Form_Name )			::	VARCHAR(   48 )	AS	dosage_Form_Name
+		,	( BHI_ndc_codes_product.route_Name )				::	VARCHAR(  143 )	AS	route_Name
+		,	( BHI_ndc_codes_product.marktg_Category_Name )		::	VARCHAR(   40 )	AS	marktg_Category_Name
+		,	( BHI_ndc_codes_product.application_Number )		::	VARCHAR(   17 )	AS	application_Number
+		,	( BHI_ndc_codes_product.labeler_Name )				::	VARCHAR(  121 )	AS	labeler_Name
+		,	( BHI_ndc_codes_product.substance_Name )			::	VARCHAR( 3816 )	AS	substance_Name
+		,	( REGEXP_REPLACE( BHI_ndc_codes_product.substance_Name, '[^a-zA-Z0-9]+', ' ' ) )
+																::	VARCHAR( 3816 )	AS	substance_Name_alphanu
+		,	( BHI_ndc_codes_product.active_Numerator_Strength )	::	VARCHAR(  742 )	AS	active_Numerator_Strength
+		,	( BHI_ndc_codes_product.active_Ingred_Unit )		::	VARCHAR( 2055 )	AS	active_Ingred_Unit
+		,	( REGEXP_REPLACE( BHI_ndc_codes_product.active_Ingred_Unit, '[^a-zA-Z0-9]+', ' ' ) )
+																::	VARCHAR( 2055 )	AS	active_Ingred_Unit_alphanu
+		,	( BHI_ndc_codes_product.pharm_Classes )				::	VARCHAR( 4000 )	AS	pharm_Classes
+		,	( REGEXP_REPLACE( BHI_ndc_codes_product.pharm_Classes, '[^a-zA-Z0-9]+', ' ' ) )
+																::	VARCHAR( 4000 )	AS	pharm_Classes_alphanu
+		,	( BHI_ndc_codes_product.DEA_Schedule )				::	VARCHAR(    4 )	AS	DEA_Schedule
+		,	( BHI_ndc_codes_product.listing_Rec_Cert_Through )	::	VARCHAR(    8 )	AS	listing_Rec_Cert_Through
+	FROM
+		clean_raw.BHI_ndc_codes_product
+	LEFT JOIN
+		clean_raw.BHI_ndc_codes_package
+	ON
+		BHI_ndc_codes_package.product_ndc		= BHI_ndc_codes_product.product_NDC
+);	/*	populate		clean_raw.BHI_ndc_codes		*/
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_ndc_codes;
+ANALYZE					clean_raw.BHI_ndc_codes;
+VACUUM SORT ONLY		clean_raw.BHI_ndc_codes;
+ANALYZE					clean_raw.BHI_ndc_codes;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ndc_codes_joint;
+DROP TABLE IF EXISTS	clean_raw.cbf_test;
+DROP TABLE IF EXISTS	clean_raw.cbf_test_0;
+
+
+
+ALTER TABLE		clean_raw.BHI_ndc_codes_joint
+RENAME TO		BHI_ndc_codes;
+
+
+create table clean_raw.cbf_test
+    (
+    foo    varchar(8)
+    , bar varchar (8)
+    )
+;
+
+alter table clean_raw.cbf_test rename to cbf_test_0;
+
+</SQL>
+    <Name>Tab 6</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>DROP TABLE IF EXISTS	clean_raw.BHI_cpt_codes_pre;
+CREATE TABLE			clean_raw.BHI_cpt_codes_pre
+(		HCPCS_CPT_Code		VARCHAR( 14 )	ENCODE	RAW
+	,	Short_Description	VARCHAR( 28 )	ENCODE	RAW
+	,	Year				VARCHAR(  4 )	ENCODE	RAW
+)	/*	create	clean_raw.BHI_cpt_codes_pre	*/
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( HCPCS_CPT_Code );
+
+
+
+COPY		clean_raw.BHI_cpt_codes_pre
+FROM		's3://dhp-randlab-s3/users/mpazen/codesets/CPT.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers' COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_cpt_codes_pre;
+ANALYZE					clean_raw.BHI_cpt_codes_pre;
+VACUUM SORT ONLY		clean_raw.BHI_cpt_codes_pre;
+ANALYZE					clean_raw.BHI_cpt_codes_pre;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_cpt_codes;
+CREATE TABLE			clean_raw.BHI_cpt_codes
+(		HCPCS_CPT_Code		VARCHAR( 14 )	ENCODE	RAW
+	,	short_Desc			VARCHAR( 28 )	ENCODE	RAW
+	,	short_Desc_alphanu	VARCHAR( 28 )	ENCODE	RAW
+	,	year				VARCHAR(  4 )	ENCODE	RAW
+)	/*	create	clean_raw.BHI_cpt_codes		*/
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( HCPCS_CPT_Code );
+
+
+
+INSERT INTO	clean_raw.BHI_cpt_codes
+(	SELECT DISTINCT
+			( HCPCS_CPT_Code )		::	VARCHAR( 14 )	AS	HCPCS_CPT_Code
+		,	( Short_Description )	::	VARCHAR( 28 )	AS	short_Desc
+		,	( REGEXP_REPLACE( Short_Description, '[^a-zA-Z0-9]+', ' ' ) )
+									::	VARCHAR( 28 )	AS	short_Desc_alphanu
+		,	( Year )				::	VARCHAR(  4 )	AS	year
+	FROM
+		clean_raw.BHI_cpt_codes_pre
+);	/*	populate		clean_raw.BHI_cpt_codes		*/
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_cpt_codes;
+ANALYZE					clean_raw.BHI_cpt_codes;
+VACUUM SORT ONLY		clean_raw.BHI_cpt_codes;
+ANALYZE					clean_raw.BHI_cpt_codes;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ICD9_codes_pre;
+CREATE TABLE			clean_raw.BHI_ICD9_codes_pre
+(		dx_code			VARCHAR(   5 )	ENCODE	ZSTD
+	,	First			DATE			ENCODE	ZSTD
+	,	Last			DATE			ENCODE	ZSTD
+	,	dx_short_desc	VARCHAR(  24 )	ENCODE	ZSTD
+	,	version			VARCHAR(   1 )	ENCODE	ZSTD
+	,	dx_long_desc	VARCHAR( 222 )	ENCODE	ZSTD
+	,	CLASS			VARCHAR(  69 )	ENCODE	ZSTD
+	,	SubCLASS		VARCHAR( 156 )	ENCODE	ZSTD
+	,	SUBSubCLASS		VARCHAR( 156 )	ENCODE	RAW
+)	/*	create			clean_raw.BHI_ICD9_codes_pre		*/
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( dx_code );
+
+
+
+COPY		clean_raw.BHI_ICD9_codes_pre
+FROM		's3://dhp-randlab-s3/users/mpazen/codesets/ICD9.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_ICD9_codes_pre;
+ANALYZE					clean_raw.BHI_ICD9_codes_pre;
+VACUUM SORT ONLY		clean_raw.BHI_ICD9_codes_pre;
+ANALYZE					clean_raw.BHI_ICD9_codes_pre;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ICD9_codes;
+CREATE TABLE			clean_raw.BHI_ICD9_codes
+(		dx_code					VARCHAR(   5 )	ENCODE	ZSTD
+	,	first_Date				DATE			ENCODE	ZSTD
+	,	last_Date				DATE			ENCODE	ZSTD
+	,	dx_short_desc			VARCHAR(  24 )	ENCODE	ZSTD
+	,	version					VARCHAR(   1 )	ENCODE	ZSTD
+	,	dx_long_desc			VARCHAR( 222 )	ENCODE	ZSTD
+	,	dx_long_desc_alphanu	VARCHAR( 222 )	ENCODE	ZSTD
+	,	class					VARCHAR(  69 )	ENCODE	ZSTD
+	,	sub_Class				VARCHAR( 156 )	ENCODE	ZSTD
+	,	sub_Sub_Class			VARCHAR( 156 )	ENCODE	RAW
+)	/*	create			clean_raw.BHI_ICD9_codes	*/
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( dx_code );
+
+
+
+INSERT INTO			clean_raw.BHI_ICD9_codes
+(	SELECT DISTINCT
+			( dx_code )			::	VARCHAR(   5 )	AS	dx_code
+		,	( First )			::	DATE			AS	first_Date
+		,	( Last )			::	DATE			AS	last_Date
+		,	( dx_short_desc )	::	VARCHAR(  24 )	AS	dx_short_desc
+		,	( version )			::	VARCHAR(   1 )	AS	version
+		,	( dx_long_desc )	::	VARCHAR( 222 )	AS	dx_long_desc
+		,	( REGEXP_REPLACE( dx_long_desc, '[^a-zA-Z0-9]+', ' ' ) )
+								::	VARCHAR( 222 )	AS	dx_long_desc_alphanu
+		,	( CLASS )			::	VARCHAR(  69 )	AS	class
+		,	( SubCLASS )		::	VARCHAR( 156 )	AS	sub_Class
+		,	( SUBSubCLASS )		::	VARCHAR( 156 )	AS	sub_Sub_Class
+	FROM
+		clean_raw.BHI_ICD9_codes_pre
+);	/*	populate	clean_raw.BHI_ICD9_codes		*/
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_ICD9_codes;
+ANALYZE					clean_raw.BHI_ICD9_codes;
+VACUUM SORT ONLY		clean_raw.BHI_ICD9_codes;
+ANALYZE					clean_raw.BHI_ICD9_codes;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ICD10_codes_pre;
+CREATE TABLE			clean_raw.BHI_ICD10_codes_pre
+(		Code			VARCHAR(   7 )	ENCODE	ZSTD
+	,	First			DATE			ENCODE	ZSTD
+	,	Last			DATE			ENCODE	RAW
+	,	dx_short_desc	VARCHAR(  60 )	ENCODE	ZSTD
+	,	Version			VARCHAR(   1 )	ENCODE	ZSTD
+	,	dx_long_desc	VARCHAR( 228 )	ENCODE	ZSTD
+)	/*	create			clean_raw.BHI_ICD10_codes_pre	*/
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( Code );
+
+
+
+COPY		clean_raw.BHI_ICD10_codes_pre
+FROM		's3://dhp-randlab-s3/users/mpazen/codesets/icd10.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_ICD10_codes_pre;
+ANALYZE					clean_raw.BHI_ICD10_codes_pre;
+VACUUM SORT ONLY		clean_raw.BHI_ICD10_codes_pre;
+ANALYZE					clean_raw.BHI_ICD10_codes_pre;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ICD10_codes;
+CREATE TABLE			clean_raw.BHI_ICD10_codes
+(		dx_code					VARCHAR(   7 )	ENCODE	ZSTD
+	,	first_Date				DATE			ENCODE	ZSTD
+	,	last_Date				DATE			ENCODE	RAW
+	,	dx_short_desc			VARCHAR(  60 )	ENCODE	ZSTD
+	,	version					VARCHAR(   1 )	ENCODE	ZSTD
+	,	dx_long_desc			VARCHAR( 228 )	ENCODE	ZSTD
+	,	dx_long_desc_alphanu	VARCHAR( 228 )	ENCODE	ZSTD
+)	/*	create			clean_raw.BHI_ICD10_codes	*/
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( dx_code );
+
+
+
+INSERT INTO			clean_raw.BHI_ICD10_codes
+(	SELECT DISTINCT
+			( Code )			::	VARCHAR(   5 )	AS	dx_code
+		,	( First )			::	DATE			AS	first_Date
+		,	( Last )			::	DATE			AS	last_Date
+		,	( dx_short_desc )	::	VARCHAR(  24 )	AS	dx_short_desc
+		,	( Version )			::	VARCHAR(   1 )	AS	version
+		,	( dx_long_desc )	::	VARCHAR( 222 )	AS	dx_long_desc
+		,	( REGEXP_REPLACE( dx_long_desc, '[^a-zA-Z0-9]+', ' ' ) )
+								::	VARCHAR( 222 )	AS	dx_long_desc_alphanu
+	FROM
+		clean_raw.BHI_ICD10_codes_pre
+);	/*	populate	clean_raw.BHI_ICD10_codes		*/
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_ICD10_codes;
+ANALYZE					clean_raw.BHI_ICD10_codes;
+VACUUM SORT ONLY		clean_raw.BHI_ICD10_codes;
+ANALYZE					clean_raw.BHI_ICD10_codes;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ndc_codes_pre;
+CREATE TABLE			clean_raw.BHI_ndc_codes_pre					/*	package	product	*/
+(		product_ID					VARCHAR(  47 )	ENCODE	ZSTD	/*	X		X		*/
+	,	product_NDC					VARCHAR(  10 )	ENCODE	ZSTD	/*	X		X		*/
+	,	start_mktg_Date				DATE			ENCODE	ZSTD	/*	X		X		*/
+	,	end_mktg_Date				DATE			ENCODE	RAW		/*	X		X		*/
+	,	NDC_exclude_Flag			VARCHAR(   1 )	ENCODE	ZSTD	/*	X		X		*/
+	,	NDC_package_Code			VARCHAR(  12 )	ENCODE	ZSTD	/*	X				*/
+	,	package_Desc				VARCHAR( 256 )	ENCODE	ZSTD	/*	X				*/
+	,	sample_Package				VARCHAR(   1 )	ENCODE	ZSTD	/*			X		*/
+	,	product_Type_Name			VARCHAR(  27 )	ENCODE	ZSTD	/*			X		*/
+	,	proprietary_Name			VARCHAR( 226 )	ENCODE	ZSTD	/*			X		*/
+	,	proprietary_Name_Suff		VARCHAR( 126 )	ENCODE	ZSTD	/*			X		*/
+	,	non_Proprietary_Name		VARCHAR( 256 )	ENCODE	ZSTD	/*			X		*/
+	,	dosage_Form_Name			VARCHAR(  46 )	ENCODE	ZSTD	/*			X		*/
+	,	route_Name					VARCHAR( 143 )	ENCODE	ZSTD	/*			X		*/
+	,	marktg_Category_Name		VARCHAR(  40 )	ENCODE	ZSTD	/*			X		*/
+	,	application_Number			VARCHAR(  15 )	ENCODE	ZSTD	/*			X		*/
+	,	labeler_Name				VARCHAR( 121 )	ENCODE	ZSTD	/*			X		*/
+	,	substance_Name				VARCHAR( 256 )	ENCODE	ZSTD	/*			X		*/
+	,	active_Numerator_Strength	VARCHAR( 256 )	ENCODE	ZSTD	/*			X		*/
+	,	active_Ingred_Unit			VARCHAR( 256 )	ENCODE	ZSTD	/*			X		*/
+	,	pharm_Classes				VARCHAR( 256 )	ENCODE	ZSTD	/*			X		*/
+	,	DEA_Schedule				VARCHAR(   4 )	ENCODE	ZSTD	/*			X		*/
+	,	listing_Rec_Cert_Through	VARCHAR(  27 )	ENCODE	ZSTD	/*			X		*/
+)	/*	create			clean_raw.BHI_ndc_codes_pre	*/
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( NDC_package_Code );
+
+
+
+COPY		clean_raw.BHI_ndc_codes_pre
+FROM		's3://dhp-randlab-s3/users/mpazen/codesets/NDC_Pipe.txt'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0  COMPUPDATE ON;
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_ndc_codes_pre;
+ANALYZE					clean_raw.BHI_ndc_codes_pre;
+VACUUM SORT ONLY		clean_raw.BHI_ndc_codes_pre;
+ANALYZE					clean_raw.BHI_ndc_codes_pre;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_ndc_codes;
+CREATE TABLE			clean_raw.BHI_ndc_codes						/*	package	product	*/
+(		product_ID					VARCHAR(  47 )	ENCODE	ZSTD	/*	X		X		*/
+	,	product_NDC					VARCHAR(  10 )	ENCODE	ZSTD	/*	X		X		*/
+	,	start_mktg_Date				DATE			ENCODE	ZSTD	/*	X		X		*/
+	,	end_mktg_Date				DATE			ENCODE	RAW		/*	X		X		*/
+	,	NDC_exclude_Flag			VARCHAR(   1 )	ENCODE	ZSTD	/*	X		X		*/
+	,	NDC_package_Code			VARCHAR(  12 )	ENCODE	ZSTD	/*	X				*/
+	,	package_Desc				VARCHAR( 256 )	ENCODE	ZSTD	/*	X				*/
+	,	package_Desc_alphanu		VARCHAR( 256 )	ENCODE	ZSTD	/*	X				*/
+	,	sample_Package				VARCHAR(   1 )	ENCODE	ZSTD	/*			X		*/
+	,	product_Type_Name			VARCHAR(  27 )	ENCODE	ZSTD	/*			X		*/
+	,	proprietary_Name			VARCHAR( 226 )	ENCODE	ZSTD	/*			X		*/
+	,	proprietary_Name_Suff		VARCHAR( 126 )	ENCODE	ZSTD	/*			X		*/
+	,	non_Proprietary_Name		VARCHAR( 256 )	ENCODE	ZSTD	/*			X		*/
+	,	dosage_Form_Name			VARCHAR(  46 )	ENCODE	ZSTD	/*			X		*/
+	,	route_Name					VARCHAR( 143 )	ENCODE	ZSTD	/*			X		*/
+	,	marktg_Category_Name		VARCHAR(  40 )	ENCODE	ZSTD	/*			X		*/
+	,	application_Number			VARCHAR(  15 )	ENCODE	ZSTD	/*			X		*/
+	,	labeler_Name				VARCHAR( 121 )	ENCODE	ZSTD	/*			X		*/
+	,	substance_Name				VARCHAR( 256 )	ENCODE	ZSTD	/*			X		*/
+	,	active_Numerator_Strength	VARCHAR( 256 )	ENCODE	ZSTD	/*			X		*/
+	,	active_Ingred_Unit			VARCHAR( 256 )	ENCODE	ZSTD	/*			X		*/
+	,	pharm_Classes				VARCHAR( 256 )	ENCODE	ZSTD	/*			X		*/
+	,	DEA_Schedule				VARCHAR(   4 )	ENCODE	ZSTD	/*			X		*/
+	,	listing_Rec_Cert_Through	VARCHAR(  27 )	ENCODE	ZSTD	/*			X		*/
+)	/*	create			clean_raw.BHI_ndc_codes		*/
+DISTSTYLE 				ALL
+COMPOUND SORTKEY( NDC_package_Code );
+
+
+
+INSERT INTO			clean_raw.BHI_ndc_codes
+(	SELECT DISTINCT
+			( product_ID )					::	VARCHAR(  47 )	AS	product_ID
+		,	( product_NDC )					::	VARCHAR(  10 )	AS	product_NDC
+		,	( start_mktg_Date )				::	DATE			AS	start_mktg_Date
+		,	( end_mktg_Date )				::	DATE			AS	end_mktg_Date
+		,	( NDC_exclude_Flag )			::	VARCHAR(   1 )	AS	NDC_exclude_Flag
+		,	( NDC_package_Code )			::	VARCHAR(  12 )	AS	NDC_package_Code
+		,	( package_Desc )				::	VARCHAR( 256 )	AS	package_Desc
+		,	( REGEXP_REPLACE( package_Desc, '[^a-zA-Z0-9]+', ' ' ) )
+											::	VARCHAR( 256 )	AS	package_Desc_alphanu
+		,	( sample_Package )				::	VARCHAR(   1 )	AS	sample_Package
+		,	( product_Type_Name )			::	VARCHAR(  27 )	AS	product_Type_Name
+		,	( proprietary_Name )			::	VARCHAR( 226 )	AS	proprietary_Name
+		,	( proprietary_Name_Suff )		::	VARCHAR( 126 )	AS	proprietary_Name_Suff
+		,	( non_Proprietary_Name )		::	VARCHAR( 256 )	AS	non_Proprietary_Name
+		,	( dosage_Form_Name )			::	VARCHAR(  46 )	AS	dosage_Form_Name
+		,	( route_Name )					::	VARCHAR( 143 )	AS	route_Name
+		,	( marktg_Category_Name )		::	VARCHAR(  40 )	AS	marktg_Category_Name
+		,	( application_Number )			::	VARCHAR(  15 )	AS	application_Number
+		,	( labeler_Name )				::	VARCHAR( 121 )	AS	labeler_Name
+		,	( substance_Name )				::	VARCHAR( 256 )	AS	substance_Name
+		,	( active_Numerator_Strength )	::	VARCHAR( 256 )	AS	active_Numerator_Strength
+		,	( active_Ingred_Unit )			::	VARCHAR( 256 )	AS	active_Ingred_Unit
+		,	( pharm_Classes )				::	VARCHAR( 256 )	AS	pharm_Classes
+		,	( DEA_Schedule )				::	VARCHAR(   4 )	AS	DEA_Schedule
+		,	( listing_Rec_Cert_Through )	::	VARCHAR(  27 )	AS	listing_Rec_Cert_Through
+	FROM
+		clean_raw.BHI_ndc_codes_pre
+);	/*	populate	clean_raw.BHI_ndc_codes		*/
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_ndc_codes;
+ANALYZE					clean_raw.BHI_ndc_codes;
+VACUUM SORT ONLY		clean_raw.BHI_ndc_codes;
+ANALYZE					clean_raw.BHI_ndc_codes;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_cpt_codes_pre;
+DROP TABLE IF EXISTS	clean_raw.BHI_ICD9_codes_pre;
+DROP TABLE IF EXISTS	clean_raw.BHI_ICD10_codes_pre;
+DROP TABLE IF EXISTS	clean_raw.BHI_ndc_codes_pre;
+
+
+/*
+ALTER TABLE	clean_raw.BHI_cpt_codes_enhanced
+RENAME TO	clean_raw.BHI_cpt_codes;
+ALTER TABLE	clean_raw.BHI_ICD9_codes_enhanced
+RENAME TO	clean_raw.BHI_ICD9_codes;
+ALTER TABLE	clean_raw.BHI_ICD10_codes_enhanced
+RENAME TO	clean_raw.BHI_ICD10_codes;
+ALTER TABLE	clean_raw.BHI_ndc_codes_enhanced
+RENAME TO	clean_raw.BHI_ndc_codes;
+*/
+
+select * from whaight.BHI_ndc_codes limit 100;
+
+
+SELECT	"column", type, encoding, distkey, sortkey, "notnull"
+FROM	pg_table_def
+WHERE		tablename = 'whaight.BHI_ndc_codes'
+		AND	sortkey &lt;&gt; 0;
+
+
+WHERE	tablename = 'cust_abs_raw.bhi_facility_claim_detail';
+
+
+select * from aprivett.herceptin_claims_summary;</SQL>
+    <Name>Tab 4</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>
+SELECT		NDCCode,	COUNT( claimID )
+FROM		clean_raw.BHI_Pharmacy_Claims
+GROUP BY	NDCCode
+ORDER BY	NDCCode;
+
+
+SELECT		NDCCode,	COUNT( claimID )
+FROM		clean_raw.BHI_Pharmacy_Claims
+WHERE		NDCCode = '43598022114'
+GROUP BY	NDCCode
+ORDER BY	NDCCode;
+
+
+
+SELECT	COUNT( claimID )
+FROM	clean_raw.BHI_Pharmacy_Claims
+;
+
+
+
+SELECT	COUNT( member_ID )
+FROM	clean_raw.bhi_members
+;
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_prevalence_NDC;
+CREATE TABLE			clean_raw.BHI_prevalence_NDC
+(		NDC_Code						VARCHAR( 12 )		ENCODE	ZSTD
+	,	patients_With_NDC_Code_Count	INTEGER				ENCODE	ZSTD
+	,	NDC_Code_Prevalence_in_BHI		NUMERIC( 16, 15 )	ENCODE	ZSTD
+)
+DISTKEY( NDC_Code )
+COMPOUND SORTKEY( NDC_Code );
+
+
+
+INSERT INTO				clean_raw.BHI_prevalence_NDC
+(	WITH			Aggregate		AS
+						(	SELECT	COUNT( member_ID )	AS	member_count
+							FROM	clean_raw.bhi_members
+						)
+				,	pharm_Claims	AS
+						(	SELECT DISTINCT		member_ID
+											,	NDC_Code
+							FROM			clean_raw.BHI_Pharmacy_Claims
+						)
+	SELECT			pharm_Claims.NDC_Code				AS	NDC_Code
+				,	COUNT( pharm_Claims.member_ID )		AS	patients_With_NDC_Code_Count
+				,	CONVERT( DOUBLE PRECISION, 1.0*COUNT( pharm_Claims.member_ID )/Aggregate.member_count )
+														AS	NDC_Code_Prevalence_in_BHI
+	FROM			pharm_Claims
+				,	Aggregate
+	GROUP BY		NDC_Code
+				,	Aggregate.member_count
+	ORDER BY	NDC_Code
+);
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_prevalence_NDC;
+ANALYZE					clean_raw.BHI_prevalence_NDC;
+VACUUM SORT ONLY		clean_raw.BHI_prevalence_NDC;
+ANALYZE					clean_raw.BHI_prevalence_NDC;
+
+SELECT	*
+FROM	clean_raw.BHI_prevalence_NDC;
+
+
+
+SELECT			NDC_Code
+			,	COUNT( member_ID )
+FROM		(	SELECT DISTINCT	member_ID,
+								NDC_Code
+				FROM			clean_raw.BHI_Pharmacy_Claims
+				WHERE			NDC_Code IN ( '00002446430', '00002477290', '00002323830' )
+			)
+GROUP BY	NDC_Code;
+
+
+
+DROP TABLE IF EXISTS		clean_raw.BHI_prevalence_CPT;
+CREATE TABLE				clean_raw.BHI_prevalence_CPT
+(		CPT_Code						VARCHAR( 14 )		ENCODE	RAW
+	,	patients_With_CPT_Code_Count	INTEGER				ENCODE	RAW
+	,	CPT_Code_Prevalence_in_BHI		NUMERIC( 16, 15 )	ENCODE	RAW
+)
+DISTKEY( CPT_Code )
+COMPOUND SORTKEY( CPT_Code );
+
+
+
+INSERT INTO				clean_raw.BHI_prevalence_CPT
+(	WITH			Aggregate	AS
+						(	SELECT	COUNT( member_ID )	AS	member_count
+							FROM	clean_raw.bhi_members
+						)
+				,	Claims		AS
+						(	SELECT DISTINCT		CPT_Code
+											,	member_ID
+							FROM			(	SELECT		CPT_HCPCS_Code	AS	CPT_Code
+														,	member_ID
+												FROM		clean_raw.bhi_facility_claim_detail	)
+									UNION	(	SELECT		CPT_HCPCS_Code	AS	CPT_Code
+														,	member_ID
+												FROM		clean_raw.bhi_Professional_Claims	)
+						)
+	SELECT			Claims.CPT_Code					AS	CPT_Code
+				,	COUNT( Claims.member_ID )		AS	patients_With_CPT_Code_Count
+				,	CONVERT( DOUBLE PRECISION, 1.0*COUNT( Claims.member_ID )/Aggregate.member_count )
+												AS	CPT_Code_Prevalence_in_BHI
+	FROM			Claims
+				,	Aggregate
+	GROUP BY		CPT_Code
+				,	Aggregate.member_count
+	ORDER BY	CPT_Code
+);
+
+
+
+--ANALYZE COMPRESSION		clean_raw.BHI_prevalence_CPT;
+ANALYZE					clean_raw.BHI_prevalence_CPT;
+VACUUM SORT ONLY		clean_raw.BHI_prevalence_CPT;
+ANALYZE					clean_raw.BHI_prevalence_CPT;
+
+
+
+SELECT	*
+FROM	clean_raw.BHI_prevalence_CPT;
+
+
+
+DROP TABLE IF EXISTS		whaight.BHI_prevalence_ICD9;
+CREATE TABLE				whaight.BHI_prevalence_ICD9
+(		ICD9_Code						VARCHAR( 5 )
+	,	patients_With_ICD9_Code_Count	INTEGER
+	,	ICD9_Code_Prevalence_in_BHI		NUMERIC( 16, 15 )
+)
+DISTKEY( ICD9_Code )
+COMPOUND SORTKEY( ICD9_Code );
+
+
+
+--WITH	legit_ICD9_Codes	AS
+--			(	SELECT	DISTINCT	dx_code	AS	ICD9_Code
+--				FROM				clean_raw.BHI_ICD9_codes	)
+SELECT		ICD9_code
+		,	COUNT( member_ID )	AS	count_Of_Patients
+FROM	(	SELECT DISTINCT		ICD9_Code
+							,	member_ID
+			FROM
+				(			(	SELECT		admitting_DX_Code	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		primary_DX_Code		AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		secondary_DX_Code1	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		secondary_DX_Code2	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		secondary_DX_Code3	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		secondary_DX_Code4	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		secondary_DX_Code5	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		secondary_DX_Code6	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		secondary_DX_Code7	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		secondary_DX_Code8	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		secondary_DX_Code9	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		secondary_DX_Code10	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Facility_Claim_Header	)
+					UNION	(	SELECT		primary_DX_Code		AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Professional_Claims	)
+					UNION	(	SELECT		secondary_DX_Code1	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Professional_Claims	)
+					UNION	(	SELECT		secondary_DX_Code2	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Professional_Claims	)
+					UNION	(	SELECT		secondary_DX_Code3	AS	ICD9_Code
+										,	member_ID
+								FROM	clean_raw.BHI_Professional_Claims	)
+				)
+			WHERE	(	ICD9_Code	IN	whaight.legit_ICD9_Codes	)
+		)
+GROUP BY	ICD9_Code
+ORDER BY	ICD9_Code;
+
+
+
+SELECT DISTINCT dx_code	AS	ICD9_Code
+INTO TABLE		whaight.legit_ICD9_Codes
+FROM			clean_raw.BHI_ICD9_codes
+ORDER BY		ICD9_Code;
+
+
+
+DROP TABLE IF EXISTS	whaight.ICD9_Codes_in_BHI_Claims;
+CREATE TABLE			whaight.ICD9_Codes_in_BHI_Claims
+(		ICD9_Code	VARCHAR(  6 )	ENCODE	ZSTD
+	,	member_ID	VARCHAR( 14 )	ENCODE	ZSTD
+)
+DISTKEY( ICD9_Code )
+COMPOUND SORTKEY( ICD9_Code );
+
+
+
+INSERT INTO				whaight.ICD9_Codes_in_BHI_Claims
+(	SELECT DISTINCT			ICD9_Code
+						,	member_ID
+	FROM
+		(			(	SELECT		( REGEXP_REPLACE( admitting_DX_Code, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( primary_DX_Code, '[^A-Z0-9]+', '' ) )		AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code1, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code2, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code3, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code4, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code5, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code6, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code7, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code8, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code9, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code10, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Facility_Claim_Header	)
+			UNION	(	SELECT		( REGEXP_REPLACE( primary_DX_Code, '[^A-Z0-9]+', '' ) )		AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Professional_Claims	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code1, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Professional_Claims	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code2, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Professional_Claims	)
+			UNION	(	SELECT		( REGEXP_REPLACE( secondary_DX_Code3, '[^A-Z0-9]+', '' ) )	AS	ICD9_Code
+								,	member_ID
+						FROM	clean_raw.BHI_Professional_Claims	)
+		)
+	ORDER BY		ICD9_Code
+);
+
+
+
+ANALYZE COMPRESSION		whaight.ICD9_Codes_in_BHI_Claims;
+ANALYZE					whaight.ICD9_Codes_in_BHI_Claims;
+VACUUM SORT ONLY		whaight.ICD9_Codes_in_BHI_Claims;
+ANALYZE					whaight.ICD9_Codes_in_BHI_Claims;
+
+
+
+SELECT	*
+FROM	whaight.ICD9_Codes_in_BHI_Claims
+--limit	1000
+;
+
+
+
+SELECT			Claims.ICD9_code
+			,	COUNT( Claims.member_ID )	AS	count_Of_Patients
+FROM				whaight.ICD9_Codes_in_BHI_Claims 	Claims
+			JOIN	whaight.legit_ICD9_Codes			Codes
+			ON		Claims.icd9_code	=	Codes.icd9_code
+GROUP BY	Claims.ICD9_Code
+ORDER BY	Claims.ICD9_Code
+;
+
+
+
+select distinct	dx_code
+from			clean_raw.BHI_ICD9_codes
+order by		dx_code	ASC;
+
+
+
+select distinct	ICD9_Code
+from			whaight.ICD9_Codes_in_BHI_Claims
+order by		ICD9_Code	ASC;
+
+
+
+SELECT DISTINCT			admitting_DX_Code	AS	ICD9_Code
+					,	member_ID
+FROM				clean_raw.BHI_Facility_Claim_Header
+UNION
+SELECT DISTINCT			primary_DX_Code		AS	ICD9_Code
+					,	member_ID
+FROM				clean_raw.BHI_Facility_Claim_Header
+UNION
+SELECT DISTINCT			secondary_DX_Code1	AS	ICD9_Code
+					,	member_ID
+FROM				clean_raw.BHI_Facility_Claim_Header	
+ORDER BY			ICD9_Code
+;
+
+
+
+SELECT DISTINCT			HDR.admitting_DX_Code											AS	ad_ICD9_Code
+					,	BTRIM( HDR.admitting_DX_Code )									AS	trimmed_code
+					,	( REGEXP_REPLACE( HDR.admitting_DX_Code, '[^A-Z0-9]+', '' ) )	AS	cleaned_Code
+					,	COUNT( member_ID )
+FROM						clean_raw.BHI_Facility_Claim_Header		HDR
+					JOIN	whaight.legit_ICD9_Codes				LEGIT
+					ON		( REGEXP_REPLACE( HDR.admitting_DX_Code, '[^A-Z0-9]+', '' ) ) = LEGIT.icd9_code
+GROUP BY			ad_ICD9_Code
+ORDER BY			ad_ICD9_Code
+;
+
+
+</SQL>
+    <Name>Tab 9</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>DROP TABLE IF EXISTS	clean_raw.BHI_members;
+CREATE TABLE 			clean_raw.BHI_members
+(		member_ID	VARCHAR( 9 )	ENCODE	ZSTD
+	,	birth_Year	INTEGER			ENCODE	DELTA
+	,	gender		VARCHAR( 1 )	ENCODE	ZSTD
+)	/*	CREATE			clean_raw.BHI_members		*/
+DISTSTYLE KEY
+DISTKEY( member_ID )
+COMPOUND SORTKEY( member_ID, birth_Year, gender );
+
+
+
+INSERT INTO		clean_raw.BHI_members
+(	SELECT
+			( member_id )		::	VARCHAR( 9 ) 	AS	member_ID
+		,	( birth_year )		::	INTEGER			AS	birth_Year
+		,	( gender )			::	VARCHAR( 1 )	AS	gender
+	FROM
+		cust_abs_raw.bhi_members
+);	/*	POPULATE		clean_raw.BHI_members	*/
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_members;
+ANALYZE					clean_raw.BHI_members;
+VACUUM SORT ONLY		clean_raw.BHI_members;
+ANALYZE					clean_raw.BHI_members;
+
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_member_enrollment;
+CREATE TABLE 			clean_raw.BHI_member_enrollment
+(		enrollment_ID			VARCHAR( 10 )	ENCODE	LZO
+	,	member_ID				VARCHAR(  9 )	ENCODE	LZO
+	,	enrollment_Start_Date	DATE			ENCODE	LZO
+	,	enrollment_Term_Date	DATE			ENCODE	LZO
+	,	zip3_Code				VARCHAR(  3 )	ENCODE	LZO
+	,	rx_Benefit_Indicator	VARCHAR(  1 )	ENCODE	LZO
+)	/*	CREATE			clean_raw.BHI_member_enrollment		*/
+DISTSTYLE KEY
+DISTKEY( member_ID )
+COMPOUND SORTKEY( member_ID, enrollment_Start_Date, enrollment_Term_Date );
+
+
+/*
+COPY		whaight.BHI_member_enrollment
+FROM		's3://dhp-rndlab-bhi-data/unzipped/member_enrollment.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+*/
+
+
+
+INSERT INTO			clean_raw.BHI_member_enrollment
+(	SELECT
+			( enrollment_id )			::	VARCHAR( 9 )	AS	enrollment_ID
+		,	( member_id )				::	INTEGER			AS	member_ID
+		,	( enrollment_start_date )	::	DATE			AS	enrollment_Start_Date
+		,	( enrollment_term_date )	::	DATE			AS	enrollment_Term_Date
+		,	( zip3_code )				::	VARCHAR( 3 )	AS	zip3_Code
+		,	( rx_benefit_indicator )	::	VARCHAR( 1 )	AS	rx_Benefit_Indicator
+	FROM
+		cust_abs_raw.BHI_member_enrollment
+);	/*	POPULATE	clean_raw.BHI_raw_member_enrollment	*/
+
+
+
+ANALYZE COMPRESSION		clean_raw.BHI_member_enrollment;
+ANALYZE					clean_raw.BHI_member_enrollment;
+VACUUM SORT ONLY		clean_raw.BHI_member_enrollment;
+ANALYZE					clean_raw.BHI_member_enrollment;
+
+
+
+select			table_name
+			,	column_name
+			,	ordinal_position
+			,	data_type
+			,	character_maximum_length
+from		information_schema.columns
+where			table_schema = 'clean_raw'
+			and	table_name = 'bhi_facility_claim_header'
+order by	ordinal_position;
+
+
+
+analyze	compression	clean_raw.bhi_facility_claim_header;
+
+
+</SQL>
+    <Name>Tab 10</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <SQL>
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_Facility_Claim_Header;
+CREATE TABLE 			clean_raw.BHI_Facility_Claim_Header
+(		claim_ID							VARCHAR( 12 )	ENCODE	ZSTD
+	,	member_ID							VARCHAR( 12 )	ENCODE	ZSTD
+	,	category_Of_Service_Code			VARCHAR(  3 )	ENCODE	ZSTD
+	,	place_Of_Service_Code				VARCHAR(  2 )	ENCODE	ZSTD
+	,	admission_Source_Code				VARCHAR(  2 )	ENCODE	ZSTD
+	,	admission_Type_Code					VARCHAR(  2 )	ENCODE	ZSTD
+	,	claimTypeCode						VARCHAR(  2 )	ENCODE	ZSTD
+	,	discharge_Status_Code				VARCHAR(  2 )	ENCODE	ZSTD
+	,	type_Of_Bill_Code					VARCHAR(  3 )	ENCODE	ZSTD
+	,	first_Date_Of_Service				DATE			ENCODE	ZSTD
+	,	last_Date_Of_Service				DATE			ENCODE	ZSTD
+	,	admitting_DX_Code					VARCHAR(  7 )	ENCODE	ZSTD
+	,	primary_DX_Code						VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_DX_Code1					VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_DX_Code2					VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_DX_Code3					VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_DX_Code4					VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_DX_Code5					VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_DX_Code6					VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_DX_Code7					VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_DX_Code8					VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_DX_Code9					VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_DX_Code10					VARCHAR(  7 )	ENCODE	ZSTD
+	,	principal_Procedure_Code			VARCHAR(  6 )	ENCODE	ZSTD
+	,	secondary_Procedure_Code1			VARCHAR(  6 )	ENCODE	ZSTD
+	,	secondary_Procedure_Code2			VARCHAR(  6 )	ENCODE	ZSTD
+	,	secondary_Procedure_Code3			VARCHAR(  6 )	ENCODE	ZSTD
+	,	secondary_Procedure_Code4			VARCHAR(  6 )	ENCODE	ZSTD
+	,	secondary_Procedure_Code5			VARCHAR(  6 )	ENCODE	ZSTD
+	,	billing_Provider_NPI				VARCHAR( 10 )	ENCODE	ZSTD
+	,	billing_Provider_Specialty_Code		VARCHAR(  2 )	ENCODE	ZSTD
+	,	billing_Provider_Zip_Code			VARCHAR(  5 )	ENCODE	ZSTD
+	,	billing_Provide_rMedicare_ID		VARCHAR( 20 )	ENCODE	ZSTD
+	,	rendering_Provider_NPI				VARCHAR( 10 )	ENCODE	ZSTD
+	,	rendering_Provider_Specialty_Code	VARCHAR(  2 )	ENCODE	ZSTD
+	,	rendering_Provider_Zip_Code			VARCHAR(  5 )	ENCODE	ZSTD
+	,	claims_System_Assigned_DRG_Code		VARCHAR(  4 )	ENCODE	ZSTD
+	,	claims_System_Assigned_MDC_Code		VARCHAR(  2 )	ENCODE	ZSTD
+	,	ICD_Code_Type						VARCHAR(  1 )	ENCODE	ZSTD
+	,	admitting_ICD10_DX_Code				VARCHAR(  8 )	ENCODE	ZSTD
+	,	primary_ICD10_DX_Code				VARCHAR(  8 )	ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code1			VARCHAR(  8 )	ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code2			VARCHAR(  8 )	ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code3			VARCHAR(  8 )	ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code4			VARCHAR(  8 )	ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code5			VARCHAR(  8 )	ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code6			VARCHAR(  8 )	ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code7			VARCHAR(  8 )	ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code8			VARCHAR(  8 )	ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code9			VARCHAR(  8 )	ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code10			VARCHAR(  8 )	ENCODE	ZSTD
+	,	principal_ICD10_Procedure_Code		VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_ICD10_Procedure_Code1		VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_ICD10_Procedure_Code2		VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_ICD10_Procedure_Code3		VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_ICD10_Procedure_Code4		VARCHAR(  7 )	ENCODE	ZSTD
+	,	secondary_ICD10_Procedure_Code5		VARCHAR(  7 )	ENCODE	ZSTD
+	,	claim_Payment_Status_Code			VARCHAR(  1 )	ENCODE	ZSTD
+	,	non_Covered_Reason_Code				VARCHAR(  2 )	ENCODE	ZSTD
+)
+DISTSTYLE KEY
+DISTKEY( member_ID )
+COMPOUND SORTKEY(
+		member_ID
+	,	claim_ID
+	,	rendering_Provider_NPI
+	,	first_Date_Of_Service
+	,	last_Date_Of_Service
+	,	primary_DX_Code
+);	/*	CREATE			clean_raw.BHI_Facility_Claim_Header		*/
+
+
+
+INSERT INTO	clean_raw.BHI_Facility_Claim_Header
+(	SELECT	*
+	FROM	cust_abs_raw.bhi_facility_claim_header
+);
+--ANALYZE COMPRESSION	clean_raw.BHI_Facility_Claim_Header;
+ANALYZE					clean_raw.BHI_Facility_Claim_Header;
+VACUUM SORT ONLY		clean_raw.BHI_Facility_Claim_Header;
+ANALYZE					clean_raw.BHI_Facility_Claim_Header;
+
+
+/*
+COPY		clean_raw.BHI_Facility_Claim_Header
+FROM		's3://dhp-rndlab-bhi-data/unzipped/facility_claim_header.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+*/
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_Facility_Claim_Detail;
+CREATE TABLE 			clean_raw.BHI_Facility_Claim_Detail
+(		claim_ID					VARCHAR( 12 )		ENCODE	ZSTD
+	,	claim_Line_Num				INTEGER				ENCODE	ZSTD
+	,	member_ID					VARCHAR( 12 )		ENCODE	ZSTD
+	,	CPT_HCPCS_Code				VARCHAR(  6 )		ENCODE	ZSTD
+	,	procedure_Modifier_Code		VARCHAR(  2 )		ENCODE	ZSTD
+	,	revenue_Code				VARCHAR(  4 )		ENCODE	BYTEDICT
+	,	number_Of_Units				NUMERIC( 10, 3 )	ENCODE	ZSTD
+	,	type_Of_Service_Code		VARCHAR(  5 )		ENCODE	ZSTD
+	,	claim_Payment_Status_Code	VARCHAR(  1 )		ENCODE	ZSTD
+	,	non_Covered_Reason_Code		VARCHAR(  2 )		ENCODE	ZSTD
+	,	TCRRV_Amount				NUMERIC( 10, 2 )	ENCODE	ZSTD
+)
+DISTSTYLE KEY
+DISTKEY( member_ID )
+COMPOUND SORTKEY(
+		member_ID
+	,	claim_ID
+	,	claim_Line_Num
+	,	CPT_HCPCS_Code
+	,	procedure_Modifier_Code
+);	/*	CREATE			clean_raw.BHI_Facility_Claim_Detail		*/
+
+
+
+INSERT INTO	clean_raw.BHI_Facility_Claim_Detail
+(	SELECT	*
+	FROM	cust_abs_raw.bhi_facility_claim_detail
+);
+--ANALYZE COMPRESSION	clean_raw.BHI_Facility_Claim_Detail;
+ANALYZE					clean_raw.BHI_Facility_Claim_Detail;
+VACUUM SORT ONLY		clean_raw.BHI_Facility_Claim_Detail;
+ANALYZE					clean_raw.BHI_Facility_Claim_Detail;
+
+
+/*
+COPY		clean_raw.BHI_Facility_Claim_Detail
+FROM		's3://dhp-rndlab-bhi-data/unzipped/facility_claim_detail.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+*/
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_Pharmacy_Claims;
+CREATE TABLE 			clean_raw.BHI_Pharmacy_Claims
+(		claim_ID							VARCHAR( 12 )		ENCODE	ZSTD
+	,	claim_Line_Num						INTEGER				ENCODE	ZSTD
+	,	member_ID							VARCHAR( 12 )		ENCODE	ZSTD
+	,	place_Of_Service_Code				VARCHAR(  2 )		ENCODE	ZSTD
+	,	NDC_Code							VARCHAR( 11 )		ENCODE	ZSTD
+	,	count_Of_Days_Supply				INTEGER				ENCODE	ZSTD
+	,	dispensed_Quantity					NUMERIC( 10, 3 )	ENCODE	ZSTD
+	,	prescription_Fill_Date				DATE				ENCODE	ZSTD
+	,	billing_Provider_NPI				VARCHAR( 10 )		ENCODE	ZSTD
+	,	rendering_Provider_NPI				VARCHAR( 10 )		ENCODE	ZSTD
+	,	prescribing_Provider_NPI			VARCHAR( 10 )		ENCODE	ZSTD
+	,	prescribing_Provider_DEA_NCPDP_ID	VARCHAR( 27 )		ENCODE	ZSTD
+	,	compound_Indicator					VARCHAR(  1 )		ENCODE	ZSTD
+	,	DAW_Code							VARCHAR(  2 )		ENCODE	ZSTD
+	,	dispensing_Status_Code				VARCHAR(  1 )		ENCODE	ZSTD
+	,	plan_Specialty_Drug_Indicator		VARCHAR(  1 )		ENCODE	ZSTD
+	,	TCRRV_Amount						NUMERIC( 10, 2 )	ENCODE	ZSTD
+)
+DISTSTYLE KEY
+DISTKEY( member_ID )
+COMPOUND SORTKEY(
+		member_ID
+	,	claim_ID
+	,	claim_Line_Num
+	,	prescribing_Provider_NPI
+	,	NDC_Code
+	,	prescription_Fill_Date
+);	/*	CREATE			clean_raw.BHI_Pharmacy_Claims		*/
+
+
+
+INSERT INTO	clean_raw.BHI_Pharmacy_Claims
+(	SELECT	*
+	FROM	cust_abs_raw.bhi_pharmacy_claims
+);
+--ANALYZE COMPRESSION	clean_raw.BHI_Pharmacy_Claims;
+ANALYZE					clean_raw.BHI_Pharmacy_Claims;
+VACUUM SORT ONLY		clean_raw.BHI_Pharmacy_Claims;
+ANALYZE					clean_raw.BHI_Pharmacy_Claims;
+
+
+
+/*
+COPY		clean_raw.BHI_Pharmacy_Claims
+FROM		's3://dhp-rndlab-bhi-data/unzipped/pharmacy_claim.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+*/
+
+
+DROP TABLE IF EXISTS	clean_raw.BHI_Professional_Claims;
+CREATE TABLE 			clean_raw.BHI_Professional_Claims
+(		claim_ID							VARCHAR( 12 )		ENCODE	ZSTD
+	,	claim_Line_Num						INTEGER				ENCODE	ZSTD
+	,	member_ID							VARCHAR( 12 )		ENCODE	ZSTD
+	,	category_Of_Service_Code			VARCHAR(  3 )		ENCODE	ZSTD
+	,	place_Of_Service_Code				VARCHAR(  2 )		ENCODE	ZSTD
+	,	claim_Type_Code						VARCHAR(  2 )		ENCODE	ZSTD
+	,	CPT_HCPCS_Code						VARCHAR(  6 )		ENCODE	ZSTD
+	,	CPT_Modifier_Code					VARCHAR(  2 )		ENCODE	ZSTD
+	,	number_Of_Units						NUMERIC( 10, 3 )	ENCODE	ZSTD
+	,	type_Of_Service_Code				VARCHAR(  5 )		ENCODE	BYTEDICT
+	,	first_Date_Of_Service				DATE				ENCODE	ZSTD
+	,	last_Date_Of_Service				DATE				ENCODE	ZSTD
+	,	primary_DX_Code						VARCHAR(  7 )		ENCODE	ZSTD
+	,	secondary_DX_Code1					VARCHAR(  7 )		ENCODE	ZSTD
+	,	secondary_DX_Code2					VARCHAR(  7 )		ENCODE	ZSTD
+	,	secondary_DX_Code3					VARCHAR(  7 )		ENCODE	ZSTD
+	,	billing_Provider_NPI				VARCHAR( 10 )		ENCODE	ZSTD
+	,	billing_Provider_Specialty_Code		VARCHAR(  2 )		ENCODE	ZSTD
+	,	billing_Provider_Zip_Code			VARCHAR(  5 )		ENCODE	ZSTD
+	,	billing_Provider_Medicare_ID		VARCHAR( 20 )		ENCODE	ZSTD
+	,	rendering_Provider_NPI				VARCHAR( 10 )		ENCODE	ZSTD
+	,	rendering_Provider_Specialty_Code	VARCHAR(  2 )		ENCODE	ZSTD
+	,	rendering_Provider_Type_Code		VARCHAR(  2 )		ENCODE	ZSTD
+	,	rendering_Provider_Zip_Code			VARCHAR(  5 )		ENCODE	ZSTD
+	,	ICD_Code_Type						VARCHAR(  1 )		ENCODE	ZSTD
+	,	primary_ICD10_DX_Code				VARCHAR(  8 )		ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code1			VARCHAR(  8 )		ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code2			VARCHAR(  8 )		ENCODE	ZSTD
+	,	secondary_ICD10_DX_Code3			VARCHAR(  8 )		ENCODE	ZSTD
+	,	claim_Payment_Status_Code			VARCHAR(  1 )		ENCODE	ZSTD
+	,	non_Covered_Reason_Code				VARCHAR(  2 )		ENCODE	ZSTD
+	,	TCRRV_Amount						NUMERIC( 10, 2 )	ENCODE	ZSTD
+)
+DISTSTYLE KEY
+DISTKEY( member_ID )
+COMPOUND SORTKEY(
+		member_ID
+	,	claim_ID
+	,	claim_Line_Num
+	,	rendering_Provider_NPI
+	,	primary_DX_Code
+	,	CPT_HCPCS_Code
+	,	first_Date_Of_Service
+	,	last_Date_Of_Service
+);	/*	CREATE			clean_raw.BHI_Professional_Claims		*/
+
+
+
+INSERT INTO	clean_raw.BHI_Professional_Claims
+(	SELECT	*
+	FROM	cust_abs_raw.bhi_professional_claims
+);
+--ANALYZE COMPRESSION	clean_raw.BHI_Professional_Claims;
+ANALYZE					clean_raw.BHI_Professional_Claims;
+VACUUM SORT ONLY		clean_raw.BHI_Professional_Claims;
+ANALYZE					clean_raw.BHI_Professional_Claims;
+
+
+/*
+COPY		clean_raw.BHI_Profesional_Claims
+FROM		's3://dhp-rndlab-bhi-data/unzipped/pfo_claim.dat'
+credentials 'aws_iam_role=arn:aws:iam::722648170004:role/Data_Wranglers'
+ACCEPTANYDATE ACCEPTINVCHARS '^' BLANKSASNULL EMPTYASNULL NULL AS 'NULL' IGNOREBLANKLINES DATEFORMAT 'auto'
+IGNOREHEADER 1 TRIMBLANKS DELIMITER '|' STATUPDATE ON MAXERROR 0 COMPUPDATE ON;
+*/
+
+
+</SQL>
+    <Name>Tab 11</Name>
+  </Query>
+</QuerySet>

@@ -1,0 +1,14 @@
+<QuerySet>
+  <Query IsView="False" IsSP="False">
+    <File>../HFNY_Normalization.sql</File>
+    <Name>HFNY_Normalization</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <File>../whaight.HFNY_claims_clean_reduced.sql</File>
+    <Name>whaight.HFNY_claims_clean_reduced</Name>
+  </Query>
+  <Query IsView="False" IsSP="False">
+    <File>../whaight.HFNY_ED_claims_clean_reduced.sql</File>
+    <Name>whaight.HFNY_ED_claims_clean_reduced</Name>
+  </Query>
+</QuerySet>
